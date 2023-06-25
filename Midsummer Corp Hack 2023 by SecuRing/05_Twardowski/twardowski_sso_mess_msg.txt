@@ -1,0 +1,12 @@
+To: Boruta
+From: Midsummer Corp CEO
+Subject: Request for IdP and SSO sign-in fix ASAP
+
+Dear Boruta,
+
+I am writing to request your assistance in fixing the IdP and SSO sign-in for our company app. As you may be aware, our main tech specialist, Twardowski, is currently missing, and we are in urgent need of your expertise to resolve this issue.
+I understand that this is a complex problem, but I have every confidence that you and your team can find a solution quickly and efficiently. The security and usability of our app are critical to our operations, and we cannot afford any downtime or disruptions.
+Please let me know as soon as possible what steps you will take to address this issue, and how long you anticipate it will take to resolve. I appreciate your prompt attention to this matter and look forward to working with you to ensure the continued success of our company.
+
+Sincerely,
+Midsummer Corp CEO
