@@ -42,8 +42,6 @@ var oc_appconfig = { /* ... */ "defaultPassword":"sfLfSNYavTD4PL4Z" /* ... */ };
 ```
 
 ### Attack Vector
-> **Note**
-For now, this section might seem short and irrevelant, but as the difficulty of stages increases it will regain it's purpose
 
 Exposed server-side secret on client-side application
 
