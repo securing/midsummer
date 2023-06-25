@@ -123,7 +123,7 @@ SAMLResponse=[REDACTED]
 
 Looking at the response headers, we can clearly see we are logged in, hurray!
 
-```HTTP
+```Text
 oc_sessionPassphrase=bd2hdt4PGYZkpAswtKvj5pCz%2BkOg%2B1v5wdM1ihj%2BBJJLbVaXXpo1npM3iRsUpKVEl03XAhUACW33HNi%2Fc7jPSFMST1v4U6JPJ%2B5mxHNKfkHLrlzxa7OcdayJtISkPVry
 ocuzsvwf431x=2955a9b68cd801a7c8900c00cd1c7067
 nc_username=twardowski
