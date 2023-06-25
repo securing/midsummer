@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../03_Baba%20Yaga/) **04: Boruta** [[ Next 🡆 ]](../05_Twardowski/)
+
 # ☆ Boruta, the Trickster ☆
 
 > Boruta is a mischievous and unpredictable figure, known for his ability to shape-shift and his love of pranks and practical jokes. As the company's Trickster, Boruta uses his skills to distract and confuse their enemies, often leading them astray with illusions and false leads. Despite his playful nature, Boruta is fiercely loyal to the company and will stop at nothing to help them achieve their goals.
@@ -286,3 +289,10 @@ Discovered when creating a new app password.
 `Midsummer_Corp{L3ave_an_0ff3r1ng_f0r_th3_spir1ts}`
 
 Found in the account's files.
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../03_Baba%20Yaga/) **04: Boruta** [[ Next 🡆 ]](../05_Twardowski/)

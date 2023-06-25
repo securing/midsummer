@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../01_Puck/) **02: Leshy** [[ Next 🡆 ]](../03_Baba%20Yaga/)
+
 # ☆ Leshy, the Tracker ☆
 
 > Leshy is a forest spirit who has an intimate knowledge of the forest and its inhabitants. His job is to lead the team to the locations where the fern flower grows and to keep a watchful eye on any unwanted visitors who may threaten their mission.
@@ -94,3 +97,10 @@ Pretty much the standard length for a general MFA code. Can be confirmed after s
 `Midsummer_Corp{Fo11ow_Th3_Wi1l_o'_7h3_W1sps}`
 
 Found in the account's files.
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../01_Puck/) **02: Leshy** [[ Next 🡆 ]](../03_Baba%20Yaga/)

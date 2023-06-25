@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../00_Structure/) **01: Puck** [[ Next 🡆 ]](../02_Leshy/)
+
 # ☆ Puck, the Intern ☆
 
 > Responsible for creating chaos and confusion to distract people from the company's true intentions.
@@ -106,3 +109,10 @@ After accessing Puck's account we can notice a text on the bottom of file displa
 ![Settings, show hidden files](./media/settings_hidden_files.png)
 
 We can now see the hidden file more specifically a directory, `.mail`. Inside it is a single file titled [`inbox.mbox`](./inbox.mbox). It contains a few emails between Puck and his coworkers and through the power of `CTRL + F` we can easily find the email related to vacations.
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../00_Structure/) **01: Puck** [[ Next 🡆 ]](../02_Leshy/)

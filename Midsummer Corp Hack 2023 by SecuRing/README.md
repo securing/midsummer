@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../sfi18_ctf%20by%20SFI/) **The Midsummer Corp Hack 2023 by SecuRing**
+
 # The Midsummer Corp Hack
 
 > Oh, my dear child, the fern flower is indeed a wondrous thing. It is said to be a rare and magical plant that blooms only once a year and only for a brief moment at that. Its beauty is unparalleled, with delicate petals that shimmer and glow in the moonlight.
@@ -51,3 +54,10 @@ I am looking forward to the next edition, for sure!
 - I discovered new tools, namely [ModHeader](https://modheader.com/) for modifying headers inside the browser and [Postman Interceptor](https://learning.postman.com/docs/sending-requests/capturing-request-data/interceptor/) for synchronizing cookies between the browser and Desktop client
 - I understood the logic behind SSO + SAML and why you always want to sign claim-based data, whether it's SAML XML or JWT Token
 - I refined my knowledge about OAuth workflow and common pitfalls
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../sfi18_ctf%20by%20SFI/) **The Midsummer Corp Hack 2023 by SecuRing**

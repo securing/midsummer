@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../04_Boruta/) **05: Twardowski** [[ Next 🡆 ]](../06_Popiel/)
+
 # ☆ Twardowski, the Alchemist ☆
 
 > Twardowski is a master of alchemy and uses his knowledge to create potions and elixirs that aid in the search for the fern flower. He is constantly experimenting with different ingredients and formulas to unlock the secrets of the flower's power. Twardowski's work is crucial to the company's mission, as his potions can provide the team with enhanced strength, speed, and intelligence.
@@ -191,3 +194,10 @@ Found in [`twardowski_sso_config.msg.txt`](./twardowski_sso_config.msg.txt) file
 `Midsummer_Corp{Look_f0r_th3_fern_w1th_silv3r_l3av3s}`
 
 Found in the account's files.
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../04_Boruta/) **05: Twardowski** [[ Next 🡆 ]](../06_Popiel/)

@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../02_Leshy/) **03: Baba Yaga** [[ Next 🡆 ]](../04_Boruta/)
+
 # ☆ Baba Yaga, the Researcher ☆
 
 > Baba Yaga is an expert in dark magic and is responsible for researching and discovering new ways to harness the power of the fern flower for the company's purposes. Her extensive knowledge of spells and potions makes her an invaluable member of the team. 
@@ -165,3 +168,10 @@ Found when requesting to reset the password for any given account (after bypassi
 `Midsummer_Corp{F1nd_th3_cl34r1ng_w1th_th3_anc13nt_st0n3s}`
 
 Found in the account's files.
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../02_Leshy/) **03: Baba Yaga** [[ Next 🡆 ]](../04_Boruta/)

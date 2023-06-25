@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../05_Twardowski/) **06: Popiel** [[ Next 🡆 ]](../07_End%20of%20the%20Journey/)
+
 # ☆ Popiel, the Director ☆
 
 > As a former king, Popiel brings a wealth of political experience to the team. He is a shrewd strategist who is well-versed in the ways of diplomacy and negotiation. Popiel's expertise is particularly valuable when it comes to navigating the complicated relationships between the Midsummer Corp and the various factions that are interested in the fern flower.
@@ -302,3 +305,10 @@ Found in `/apps/oauth2/appinfo/routes.php` file registering routes related to OA
 `Midsummer_Corp{Spr1nkle_wat3r_fr0m_a_s@cr3d_spr1ng_0n_th3_fern}`
 
 Found in the account's files.
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../05_Twardowski/) **06: Popiel** [[ Next 🡆 ]](../07_End%20of%20the%20Journey/)

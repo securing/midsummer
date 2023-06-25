@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+**00: Structure** [[ Next 🡆 ]](../01_Puck/)
+
 # Writeup structure
 
 Before we move on to actual challenges, I should explain how the following writeup is structured.
@@ -33,3 +36,10 @@ This section talks about the weakpoint of the system, how the vulnerability we p
 ### Tasks
 
 This section explains how to complete all the Tasks in the current Stage.
+
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+**00: Structure** [[ Next 🡆 ]](../01_Puck/)

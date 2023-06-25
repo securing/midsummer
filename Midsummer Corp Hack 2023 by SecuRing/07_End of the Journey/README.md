@@ -1,3 +1,6 @@
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../06_Popiel/) **07: End of the Journey**
+
 # End of the Journey
 
 > As you wander through the dense forest, your eyes scan the ground for any sign of the elusive fern flower. You've been searching for hours, but your determination keeps you going. Suddenly, you spot a flash of vibrant green and silver out of the corner of your eye. Could it be there? You rush over to investigate, and there it is – the fern flower blooming in all its glory. 
@@ -35,3 +38,9 @@ By taking all the previous flags we found, "decrypting" them into normal text an
 > Sprinkle water from a sacred sprint on the fern </br>
 > **The fern flower reveals its secrets**
 
+</br>
+</br>
+</br>
+
+[[ 🡅 Move up ]](../)</br>
+[[ 🡄 Previous ]](../06_Popiel/) **07: End of the Journey**
