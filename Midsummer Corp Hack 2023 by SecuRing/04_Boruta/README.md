@@ -86,7 +86,7 @@ Doing that and sending the request again presents us with a different message:
 <details>
 <summary>View HTTP Request</summary>
 
-```
+```HTTP
 POST /settings/personal/authtokens HTTP/1.1
 Host: 10.10.61.132
 Content-Type: application/json
@@ -146,7 +146,7 @@ Looking back at the original request we can notice a `RequestToken` header being
 <details>
 <summary>View HTTP Request</summary>
 
-```
+```HTTP
 POST /settings/personal/authtokens HTTP/1.1
 Host: 10.10.61.132
 Cookie: oc_sessionPassphrase=t%2FIufQE9ZjGG%2Bj0UfGJJxVvVSHU9EJI6jXP7y%2B6%2F2UDRy7HpvT7Sm6j763wFHQ25Ym4l1eXsfVNRnf9ELmzB8JLOaRNISvXMeM9PQP%2BCJTbWRNA7%2BO7h7MhVESueboHF; nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; ocuzsvwf431x=213413f4d5c7256d35c40ada346666ec; nc_username=babayaga; nc_token=%2FBOCBof%2Fn9PB3I2lfF93maNGZBmDFmtA; nc_session_id=213413f4d5c7256d35c40ada346666ec; nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; oc_sessionPassphrase=C7%2FV7y329E2yz%2BS6PGw%2BvMc2zu1yrMAclub8ITjSP3O2NJ%2BstEwA%2Fl2TGZiIS6Hn%2FtO8X5X5mRfE1uyg1QxZhIyYByUvvFbUXZmyDZwneGu0Ix4gqlKzzZRb7ariPa7%2F; ocuzsvwf431x=b6f9a9ef03dd9cc56ea720fc6b2d80fe
@@ -173,7 +173,7 @@ Now, the question arises, what happens if we pass `loginName` as a payload param
 <details>
 <summary>View HTTP Request</summary>
 
-```
+```HTTP
 POST /settings/personal/authtokens HTTP/1.1
 Host: 10.10.61.132
 Cookie: oc_sessionPassphrase=t%2FIufQE9ZjGG%2Bj0UfGJJxVvVSHU9EJI6jXP7y%2B6%2F2UDRy7HpvT7Sm6j763wFHQ25Ym4l1eXsfVNRnf9ELmzB8JLOaRNISvXMeM9PQP%2BCJTbWRNA7%2BO7h7MhVESueboHF; nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; ocuzsvwf431x=213413f4d5c7256d35c40ada346666ec; nc_username=babayaga; nc_token=%2FBOCBof%2Fn9PB3I2lfF93maNGZBmDFmtA; nc_session_id=213413f4d5c7256d35c40ada346666ec; nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; oc_sessionPassphrase=C7%2FV7y329E2yz%2BS6PGw%2BvMc2zu1yrMAclub8ITjSP3O2NJ%2BstEwA%2Fl2TGZiIS6Hn%2FtO8X5X5mRfE1uyg1QxZhIyYByUvvFbUXZmyDZwneGu0Ix4gqlKzzZRb7ariPa7%2F; ocuzsvwf431x=b6f9a9ef03dd9cc56ea720fc6b2d80fe
@@ -227,7 +227,7 @@ Let's use this new knowledge to construct another request:
 <details>
 <summary>View HTTP Request</summary>
 
-```
+```HTTP
 POST /settings/personal/authtokens HTTP/1.1
 Host: 10.10.61.132
 Cookie: oc_sessionPassphrase=t%2FIufQE9ZjGG%2Bj0UfGJJxVvVSHU9EJI6jXP7y%2B6%2F2UDRy7HpvT7Sm6j763wFHQ25Ym4l1eXsfVNRnf9ELmzB8JLOaRNISvXMeM9PQP%2BCJTbWRNA7%2BO7h7MhVESueboHF; nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; ocuzsvwf431x=213413f4d5c7256d35c40ada346666ec; nc_username=babayaga; nc_token=%2FBOCBof%2Fn9PB3I2lfF93maNGZBmDFmtA; nc_session_id=213413f4d5c7256d35c40ada346666ec; nc_sameSiteCookielax=true; nc_sameSiteCookiestrict=true; oc_sessionPassphrase=C7%2FV7y329E2yz%2BS6PGw%2BvMc2zu1yrMAclub8ITjSP3O2NJ%2BstEwA%2Fl2TGZiIS6Hn%2FtO8X5X5mRfE1uyg1QxZhIyYByUvvFbUXZmyDZwneGu0Ix4gqlKzzZRb7ariPa7%2F; ocuzsvwf431x=b6f9a9ef03dd9cc56ea720fc6b2d80fe
