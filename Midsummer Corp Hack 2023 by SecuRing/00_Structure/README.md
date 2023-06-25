@@ -2,17 +2,15 @@
 
 Before we move on to actual challenges, I should explain how the following writeup is structured.
 
-## Major vs Minor task
+## Stages and Tasks
 
-Each **Stage** (formally known as 'Task' on TryHackMe) is divided into **Tasks** (formally knows as 'Questions') that you need to complete in order to gain points. 
+Because I don't like the naming convention used on TryHackMe, I decided to implement my own.
 
-It's important to note that you <ins>don't need to finish all tasks</ins> before you can unlock the next stage. The only prerequisite for a given Stage (if any) is the access to particular user account.
+Each **Stage** (formally known as `Task` on TryHackMe) is divided into **Tasks** (formally knows as `Questions`) that you need to complete in order to gain points. 
 
-All stages contain at least 1 task which requires you to find your way into someone's account in order to complete it. Other tasks simply test your understanding of the topic or guide you to successfully find the Attack Vector and exploit it.
+It's important to note that you **don't need to finish all tasks** before you can unlock the next stage. In fact, Stages don't form a linear progression system, although they tend to increase in difficulty and complexity the lower on the list they are. The only prerequisite for a given Stage (if any) is the access to particular user account.
 
-Thus, I decided to make the following distinction:
-- **Major Task** is a task that requires you to find a flag stored on user account (which is equivalent to hacking your way into a new account)
-- **Minor Task** is a task that doesn't meet Major Task requirements (meaning it might or might not require access to a new account)
+All Stages focus on finding a way to gain access into an user account. Stages are accompanied by Tasks, of which at least 1 requires you to have already hacked into particular account in order to complete.
 
 ## Stage breakdown
 Article explain every stage will be divided with following sections in mind
@@ -26,12 +24,12 @@ This section is devoted to the thought process behind finding and exploiting the
 - **Attack Vector** - description of the found vulnerability
 - **Execution** - using the Attack Vector to gain access into the user account
 
-This section explains the <ins>Major Task only</ins>!
+This section focuses on how to gain access into user account and might accidently solve some of the Tasks - their solution will **always** be posted in a section below regardless.
 
 ### Prevention
 
-This section talks about the weakpoint of the system, how the vulnerability we previously used came to life and how to prevent it from appearing in the first place
+This section talks about the weakpoint of the system, how the vulnerability we previously used came to life and how to prevent it from appearing in the first place.
 
-### Minor tasks
+### Tasks
 
-This section explains how to complete the remaining Minor Tasks in the current Stage
+This section explains how to complete all the Tasks in the current Stage.

@@ -273,7 +273,7 @@ When processing object-like user input (like in example above) always assign onl
 
 There are multiple libraries available to make handling user input a breeze, for example, [Zod](https://zod.dev/), my personal go-to library for projects in Javascript.
 
-## Minor tasks
+## Tasks
 
 ### What parameter name assigns the app password to the specific user?
 
@@ -285,4 +285,4 @@ Discovered when creating a new app password.
 
 `Midsummer_Corp{L3ave_an_0ff3r1ng_f0r_th3_spir1ts}`
 
-Found in files stored on that account.
+Found in the account's files.

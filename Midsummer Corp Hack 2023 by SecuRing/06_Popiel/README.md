@@ -271,13 +271,13 @@ To up the security even more, authorization codes should be short-lived, one-tim
 
 Secondly, OAuth Client creation should only be allowed for trusted users. It is not necessary to restrict this ability to admin only, but there shouldn't be an use case in which every single user can create their own Client.
 
-## Minor tasks
+## Tasks
 
 ### The NextCloud application plays two OAuth roles at once. Which ones?
 
 `Authorization Server, Resource Server`
 
-Straight from the Briefing, although requires a bit of logical thinking this time
+Straight from the Briefing, although requires a bit of logical thinking this time.
 
 ### What value of the response_type parameter indicates that an application is starting the authorization code flow?
 
@@ -297,7 +297,7 @@ Straight from the OAuth 2.0 protocol specification, can also easily be found in 
 
 Found in `/apps/oauth2/appinfo/routes.php` file registering routes related to OAuth 2.0.
 
-### (Major) What is the content of the Fern_flower_ritual_shard6.txt file in Popiel's account?
+### What is the content of the Fern_flower_ritual_shard6.txt file in Popiel's account?
 
 `Midsummer_Corp{Spr1nkle_wat3r_fr0m_a_s@cr3d_spr1ng_0n_th3_fern}`
 

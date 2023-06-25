@@ -73,24 +73,24 @@ var adminPassword = "admin123";
 
 which is already a huge plus.
 
-## Minor tasks
+## Tasks
 
 ### What do we call the process of verifying the identity of a user or system?
 `Authentication`
 
-Straight from the Briefing; trivial;
+Straight from the Briefing.
 
 ### How do we call the process of verifying that a user has access to a particular resource?
 `Authorization`
 
-Straight from the Briefing; trivial;
+Straight from the Briefing.
 
 ### How long is Puck's password?
 `16`
 
-Once you find the password you can check it's length
+Once you find the password you can easily check it's length.
 
-### (Major) What is the content of the file Fern_flower_ritual_shard1.txt in Puck's account?
+### What is the content of the file Fern_flower_ritual_shard1.txt in Puck's account?
 `Midsummer_Corp{W@it_unt!1_m1dn1ght_0n_th3_Summ3r_Solst1c3}`
 
 As is the case with every account, once we log into it we are able to navigate through the files stored on that account. There are two notable files present on every account:

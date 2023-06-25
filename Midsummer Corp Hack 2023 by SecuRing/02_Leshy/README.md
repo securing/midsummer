@@ -81,7 +81,7 @@ When dealing with MFA you should always make sure that MFA secrets are unique be
 
 Also, as a note, never send passwords in emails, this screams 'insecurity' as much as `HTTP`.
 
-## Minor tasks
+## Tasks
 
 ### What is the length of the MFA code used in the application?
 
@@ -89,8 +89,8 @@ Also, as a note, never send passwords in emails, this screams 'insecurity' as mu
 
 Pretty much the standard length for a general MFA code. Can be confirmed after setting up MFA on Puck's account.
 
-### (Major) What is the content of the file Fern_flower_ritual_shard2.txt in Leshy's account?
+### What is the content of the file Fern_flower_ritual_shard2.txt in Leshy's account?
 
 `Midsummer_Corp{Fo11ow_Th3_Wi1l_o'_7h3_W1sps}`
 
-Trivial
+Found in the account's files.

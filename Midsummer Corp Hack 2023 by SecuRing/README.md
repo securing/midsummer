@@ -17,7 +17,7 @@
 **CTF type**: Jeopardy </br>
 **Category**: Web, reverse-engineering </br>
 **Difficulty**: Medium </br>
-**Task count**: 6 major + 21 minor
+**Task count**: 7 stages with 25 tasks total
 
 **Start date**: June 5, 2023, 9:00 AM </br>
 **End date**: *It seems the event lasts indefinately*

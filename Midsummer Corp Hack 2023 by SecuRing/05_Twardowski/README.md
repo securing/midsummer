@@ -148,31 +148,31 @@ You can also choose to **encrypt the data**, providing it with another layer of 
 
 When choosing an encryption algorithm, it is advised to use an **assymetric** one, due to intrinsic higher security this class provides.
 
-## Minor tasks
+## Tasks
 
 ### What is the name of the XML entity that contains information about user such as their name, email, roles, etc.?
 
 `Assertion`
 
-Straight from the Briefing
+Straight from the Briefing.
 
 ### What is the name of a party that authenticates users and issues SAML assertions?
 
 `Identity Provider`
 
-Straight from the Briefing
+Straight from the Briefing.
 
 ### What is the date on the document scan from Twardowski's account in DD/MM/YYYY format?
 
 `15/06/2023`
 
-Found in [`pact_with_devil_scan.jpg`](./pact_with_devil_scan.jpg) in the account's files
+Found in [`pact_with_devil_scan.jpg`](./pact_with_devil_scan.jpg) in the account's files.
 
 ### What should be the value of Content-Type header when sending the SAML Response?
 
 `application/x-www-form-urlencoded`
 
-Can be easily googled or found in a SAML flow example
+Can be easily googled or found in a SAML flow example.
 
 ### What should be Destination set to in SAML Response?
 
@@ -184,10 +184,10 @@ The `/apps/user_saml/saml/acs` was discovered in [`twardowski_sso_config.msg.txt
 
 `http://idp.midsummer.corp`
 
-Found in [`twardowski_sso_config.msg.txt`](./twardowski_sso_config.msg.txt) file (`idp` part in the URI gives it away)
+Found in [`twardowski_sso_config.msg.txt`](./twardowski_sso_config.msg.txt) file (`idp` part in the URI gives it away).
 
-### (Major) What is the content of the Fern_flower_ritual_shard5.txt file in Twardowski's account?
+### What is the content of the Fern_flower_ritual_shard5.txt file in Twardowski's account?
 
 `Midsummer_Corp{Look_f0r_th3_fern_w1th_silv3r_l3av3s}`
 
-Found in the account's files
+Found in the account's files.

@@ -149,7 +149,7 @@ In this stage the problem boiled down to not checking whether the `<TOKEN>` is v
 
 Generated password-reset tokens should, for example, be stored in the databased, and have a short lifetime associated with them. After being used, tokens should be simply disposed.
 
-## Minor tasks
+## Tasks
 
 ### Which HTTP header was used to bypass throttling?
 `X-Forwarded-For`
@@ -161,7 +161,7 @@ Found simply by trail and error or by reading through the code responsible for r
 
 Found when requesting to reset the password for any given account (after bypassing the rate limiting).
 
-### (Major) What is the content of the Fern_flower_ritual_shard3.txt file in babayaga account?
+### What is the content of the Fern_flower_ritual_shard3.txt file in babayaga account?
 `Midsummer_Corp{F1nd_th3_cl34r1ng_w1th_th3_anc13nt_st0n3s}`
 
-Found in the account files.
+Found in the account's files.
