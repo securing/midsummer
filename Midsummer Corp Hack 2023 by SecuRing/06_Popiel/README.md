@@ -39,7 +39,7 @@
 
 ### Reconnaissance
 
-> **Note**
+> **Note** </br>
 I won't be explain how OAuth 2.0 work in detail but it's crucial to have knowledge about it in order to understand this attack. I refer you to two linked resources inside the Briefing in order to better understand the flow and logic behind OAuth 2.0.
 
 Briefing already tells us how we are supposed to hack our way into the system - by exchanging the leaked authorization code for a token. For this to work, the server must not check which authorization code is tied to what application, giving as an Attack Vector already!
@@ -63,7 +63,7 @@ return [
 ];
 ```
 
-> **Note**
+> **Note** </br>
 > Routes in this file are registered under `/apps/oauth2` prefix, meaning `/clients` in reality maps to `/apps/oauth2/clients` etc.
 
 Second of all, Twardowski was using **admin credentials** to register theirs new client. Is might be possible to use those to gain access to everything the web app has to offer, admin is an admin after all. Furthermore, by navigating to `/u/admin` we can check that `admin` user in fact exists in the system. For all the previous stages, Briefing exclusively mentioned what account we are trying to break into, which isn't the case for this one.
@@ -126,7 +126,7 @@ public function addClient( /* (...) */ ): JSONResponse { /* (...) */ }
 
 The `@NoAdminRequired` annotation means that to access this endpoint you don't need admin privilages. You still need to be a valid user hovewer, as this endpoint doesn't contain the `@PublicPage` annotation.
 
-> **Note**
+> **Note** </br>
 All the annotations are implemented and explained in `/lib/private/AppFramework/Middleware/Security/SecurityMiddleware.php`
 
 All those pieces of information should be enough to execute the attack.

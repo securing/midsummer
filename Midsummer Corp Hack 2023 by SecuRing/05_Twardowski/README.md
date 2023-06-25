@@ -22,7 +22,7 @@
 
 ### Reconnaissance
 
-> **Note**
+> **Note** </br>
 I won't be explain how SAML and SSO work in detail but it's crucial to have knowledge about them in order to understand this attack. I refer you to [this article by SecuRing](https://www.securing.pl/en/saml-what-can-go-wrong-security-check/) in order to better understand the flow and logic behind SAML SSO.
 
 Let's start by exploring Boruta's files. There are two that should immediately grab out attention - [`twardowski_sso_config.msg.txt`](./twardowski_sso_config.msg.txt) and [`twardowski_sso_mess_msg.txt`](./twardowski_sso_mess_msg.txt). While the latter simply refers to Identity Provider (IdP for short) and by extension SSO being down, the former actually gives us some useful information that we will need.
@@ -133,7 +133,7 @@ nc_session_id=2955a9b68cd801a7c8900c00cd1c7067
 
 The only thing to do is to copy those cookies into the browser, to make it easier for us to access the account and files stored on it.
 
-> **Note**
+> **Note** </br>
 Alternatively, we can use a browser extension called [Postman Interceptor](https://learning.postman.com/docs/sending-requests/capturing-request-data/interceptor/) to allow us to synchronize cookies between the Postman desktop app and the web browser.
 
 ## Prevention
