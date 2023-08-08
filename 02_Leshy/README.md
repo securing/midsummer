@@ -54,7 +54,7 @@ Leshy
 
 That was quite unexpected.
 
-Trying to log in into their account will hovewer prompt us to enter the MFA code, just as expected.
+Trying to log in into their account will however prompt us to enter the MFA code, just as expected.
 
 ![MFA prompt](./media/MFA_prompt.png)
 
@@ -64,11 +64,11 @@ While fiddling around with Puck's account I noticed that I'm able to setup MFA o
 
 ![MFA secret being '234567'](./media/MFA_secret.png)
 
-I restarted the MFA setup process - secret was still the same. It might be the case that the server is still using the previously generated code for this account, which is a red flag already, but just to confirm my suspisions, I decided to terminate the current VM and setup a new one - **the secret was still the same**.
+I restarted the MFA setup process - secret was still the same. It might be the case that the server is still using the previously generated code for this account, which is a red flag already, but just to confirm my suspicions, I decided to terminate the current VM and setup a new one - **the secret was still the same**.
 
 ### Attack Vector
 
-MFA secret not being randomised across user-accounts (not even between MFA setup attempts).
+MFA secret not being randomized across user-accounts (not even between MFA setup attempts).
 
 ### Execution
 

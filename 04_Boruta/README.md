@@ -106,7 +106,7 @@ Content-Length: 16
 
 Hmm, seems we tripped a Cross-Site Request Forgery countermeasure, we will need to find a way around that first.
 
-Using the source code provided we can search for occurances of `CSRF check failed` string to find that it's only used in `CrossSiteRequestForgeryException.php`. Following the "chain" we arrive at this code snippet in the familiar `SecurityMiddleware.php` file:
+Using the source code provided we can search for occurrences of `CSRF check failed` string to find that it's only used in `CrossSiteRequestForgeryException.php`. Following the "chain" we arrive at this code snippet in the familiar `SecurityMiddleware.php` file:
 
 ```PHP
 if (!$this->request->passesCSRFCheck() && !(
@@ -192,7 +192,7 @@ Content-Length: 39
 {"error": "Blocked by web application firewall."}
 ```
 
-Sweet, more errors, at least they are a different flavour.
+Sweet, more errors, at least they are a different flavor.
 
 Looking into the code again, we can trace back this error to a function inside `AuthSettingsController.php`:
 
@@ -274,7 +274,7 @@ When dealing with any kind of user input you always need to sanitize it. "Trusti
 
 When processing object-like user input (like in the example above) always assign only specific properties and not the whole object (in our case, the only copied property from the input object should be `name`).
 
-There are multiple libraries available to make handling user input a breeze, for example, [Zod](https://zod.dev/), my personal go-to library for projects in Javascript.
+There are multiple libraries available to make handling user input a breeze, for example, [Zod](https://zod.dev/), my personal go-to library for projects in JavaScript.
 
 ## Tasks
 

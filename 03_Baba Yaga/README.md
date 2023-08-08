@@ -21,7 +21,7 @@
 > - X-Remote-Addr: 127.0.0.1 
 > - X-Client-IP: 127.0.0.1 
 > - X-Host: 127.0.0.1 
-> - X-Forwared-Host: 127.0.0.1 
+> - X-Forwarded-Host: 127.0.0.1 
 >
 > Is Baba Yaga foolish enough to think you will not be able to find a way around her ingenious invention? There's only one way to find out. 
 >
@@ -43,7 +43,7 @@ Moreover, we will have to deal with rate limiting along the way, but we will wor
 
 Let's start by trying to reset the password of `babayaga` account. On the login page, we can try the `Forgot password?` option and enter Baba Yaga's account name (which is simply `babayaga`).
 
-![Reseting Baba Yaga's password, getting rate limited](./media/password_reset_429.png)
+![Resetting Baba Yaga's password, getting rate limited](./media/password_reset_429.png)
 
 However, we get hit by an error, pretty general one in fact. We could suspect it has something to do with aforementioned rate limiting but it's always better to make sure.
 
@@ -103,9 +103,9 @@ To spoof the header we can use a browser extension, such as [ModHeader](https://
 
 Now that rate limiting is (hopefully) dealt with, let's try resetting the password one more time.
 
-![Reseting Baba Yaga's password, success](./media/password_reset.png)
+![Resetting Baba Yaga's password, success](./media/password_reset.png)
 
-Hovewer, as noted before, we won't receive any password reset link, so there must be another way to exploit this system.
+However, as noted before, we won't receive any password reset link, so there must be another way to exploit this system.
 
 Using the Network tab again, we can select the password reset request to see the following:
 

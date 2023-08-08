@@ -26,7 +26,7 @@
 ### Reconnaissance
 After navigating to the web app we are presented with the login page allowing us to choose between a traditional login + password method or Single Sign On method.
 
-![Login page](./media/login_page.png)
+![Login page](./media/login_page.jpg)
 
 Keen eye might see some text on the bottom - although it can't be highlighted by selection, we can use browser DevTools to easily see its contents.
 
@@ -53,8 +53,6 @@ Exposed server-side secret on client-side application
 We will use the default user password buried in the client-side web application to access `puck` account.
 
 On the login page we will choose the traditional method, entering `puck` as account name and our newly found default password as password.
-
-![Login attempt](./media/login_attempt.png)
 
 Lo and behold, we successfully gained access to Puck's account. Wasn't so hard after all, eh?
 
