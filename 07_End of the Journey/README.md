@@ -15,6 +15,9 @@
 
 Each of the accounts we hacked into contained a file named `fernflower_flag[n].png` which corresponded to n<sup>th</sup> piece of the final flag. Six accounts, six flags.
 
+<details>
+<summary>The Final Flag</summary>
+
 ![Fernflower flag part 1 belonging to Puck](./media/fernflower_flag1.png)
 ![Fernflower flag part 2 belonging to Leshy](./media/fernflower_flag2.png)
 ![Fernflower flag part 3 belonging to Baba Yaga](./media/fernflower_flag3.png)
@@ -22,13 +25,18 @@ Each of the accounts we hacked into contained a file named `fernflower_flag[n].p
 ![Fernflower flag part 5 belonging to Boruta](./media/fernflower_flag5.png)
 ![Fernflower flag part 6 belonging to Popiel](./media/fernflower_flag6.png)
 
-Brought together, they form the **final flag**:
+Brought together, they form **the final flag**:
 
 `Midsummer_Corp{Th3_f3rN_f!0w3r_r3ve@ls_it$_5ecr3t$}`
 
-## Bonus: How to find the Fernflower?
+</details>
 
-By taking all the previous flags we found, "decrypting" them into normal text and putting them in order, we have a step-by-step instruction on how to find the Fernflower:
+## Bonus: How to find the fern flower?
+
+By taking all the previous flags we found, "decrypting" them into normal text and putting them in order, we have a step-by-step instruction on how to find the fern flower.
+
+<details>
+<summary>How to find the fern flower?</summary>
 
 > Wait until midnight on the Summer Solstice </br>
 > Follow The Will o' the Wisps </br>
@@ -37,6 +45,9 @@ By taking all the previous flags we found, "decrypting" them into normal text an
 > Look for the fern with silver leaves </br>
 > Sprinkle water from a sacred sprint on the fern </br>
 > **The fern flower reveals its secrets**
+
+</details>
+
 
 </br>
 </br>

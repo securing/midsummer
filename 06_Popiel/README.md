@@ -43,40 +43,40 @@
 ### Reconnaissance
 
 > **Note** </br>
-I won't be explain how OAuth 2.0 work in detail but it's crucial to have knowledge about it in order to understand this attack. I refer you to two linked resources inside the Briefing in order to better understand the flow and logic behind OAuth 2.0.
+I won't explain how OAuth 2.0 work in detail but it's crucial to have knowledge about it in order to understand this attack. I refer you to two linked resources in the Briefing to better understand the flow and logic behind OAuth 2.0.
 
-Briefing already tells us how we are supposed to hack our way into the system - by exchanging the leaked authorization code for a token. For this to work, the server must not check which authorization code is tied to what application, giving as an Attack Vector already!
+The Briefing already tells us how we are supposed to hack our way into the system - by exchanging the leaked authorization code for a token. For this to work, the server must not check which authorization code is tied to which application, giving as an Attack Vector already!
 
-Let's start by exploring Twardowski's files. There are two that should immediately grab out attention:
-- [`authorization_code.txt`](./authorization_code.txt) containing a leaked authorization code, apparently related to Popiel. That's a huge find already!
+Let's start by exploring Twardowski's files. There are two that should immediately catch our attention:
+- [`authorization_code.txt`](./authorization_code.txt) containing a leaked authorization code related to Popiel. That's a huge find already!
 - [`supportticket_draft.txt`](./supportticket_draft.txt) containing a draft of a message explaining the problem with registration of Twardowski's client.
 
 Closer look at the second file reveals more interesting details.
 
-First of all, Twardowski tried to send a request to `/apps/oauth2/clients` endpoint. Using the provided source code we can easily find all the remaining routes related to OAuth 2.0 inside `/apps/oauth2/appinfo/routes.php` file:
+First of all, Twardowski tried to send a request to the `/apps/oauth2/clients` endpoint. Using the provided source code we can easily find all the remaining routes related to OAuth 2.0 inside `/apps/oauth2/appinfo/routes.php` file:
 
 ```PHP
 return [
-	'routes' => [
-		['name' => 'Settings#addClient', 'url' => '/clients', 'verb' => 'POST'],
-		['name' => 'Settings#deleteClient', 'url' => '/clients/{id}', 'verb' => 'DELETE'],
-		['name' => 'LoginRedirector#authorize', 'url' => '/authorize', 'verb' => 'GET'],
-		['name' => 'OauthApi#getToken', 'url' => '/api/v1/token', 'verb' => 'POST' ],
-	],
+    'routes' => [
+        ['name' => 'Settings#addClient', 'url' => '/clients', 'verb' => 'POST'],
+        ['name' => 'Settings#deleteClient', 'url' => '/clients/{id}', 'verb' => 'DELETE'],
+        ['name' => 'LoginRedirector#authorize', 'url' => '/authorize', 'verb' => 'GET'],
+        ['name' => 'OauthApi#getToken', 'url' => '/api/v1/token', 'verb' => 'POST' ],
+    ],
 ];
 ```
 
 > **Note** </br>
 > Routes in this file are registered under `/apps/oauth2` prefix, meaning `/clients` in reality maps to `/apps/oauth2/clients` etc.
 
-Second of all, Twardowski was using **admin credentials** to register theirs new client. Is might be possible to use those to gain access to everything the web app has to offer, admin is an admin after all. Furthermore, by navigating to `/u/admin` we can check that `admin` user in fact exists in the system. For all the previous stages, Briefing exclusively mentioned what account we are trying to break into, which isn't the case for this one.
+Second, Twardowski was using **admin credentials** to register their new client. It might be possible to use these to gain access to everything the web app has to offer, admin is an admin after all. Furthermore, by navigating to `/u/admin` we can check that `admin` user in fact exists in the system. In all of the previous stages, the Briefing specifically mentioned what account we were trying to break into, which isn't the case for this one.
 
 ![Admin's profile](./media/admin_profile.png)
 
-All of these further reinforce the idea that we might gain access to Popiel's account through `admin` - we will give it a try later. For now, let's try to recreate the request that Twardowski had some troubles with:
+All of this further reinforces the idea that we might gain access to Popiel's account through `admin` - we will give it a try later. For now, let's try to recreate the request that Twardowski had some trouble with:
 
 <details>
-<summary>View HTTP Request</summary>
+<summary>View HTTP request</summary>
 
 ```HTTP
 POST /apps/oauth2/clients HTTP/1.1
@@ -95,10 +95,10 @@ Cookie: ocqpfobax3l0=ea40d3c44aebc7c3d2d060ce0c74f7c4; oc_sessionPassphrase=mzJr
 }
 ```
 
-There goes the plan to use Admin's cookies to make our way in - the user is logged out server side and there's nothing we can do about it. What happens if we just removed those cookies and send the request again?
+There goes the plan to use Admin's cookies to make our way in - the session is no longer active and there's nothing we can do about it. What happens if we just remove those cookies and send the request again?
 
 <details>
-<summary>View HTTP Request</summary>
+<summary>View HTTP request</summary>
 
 ```HTTP
 POST /apps/oauth2/clients HTTP/1.1
@@ -116,9 +116,9 @@ Content-Length: 86
 }
 ```
 
-We get exactly the same error message. If we cannot access this endpoint as an admin and anonymous user, maybe being logged onto one of the other accounts will do the trick?
+We get the exact same error. If we cannot access this endpoint as either an administrator or an anonymous user, could we perhaps get valid session cookies by logging in to one of the accounts we already have access to?
 
-Opening the `/apps/oauth2/lib/Controller/SettingsController.php` Controller (one responsible for handling POST requests on `/apps/oauth2/clients`) in the source code confirms that we can use any of the valid accounts to register an OAuth2 client:
+Inspecting the source code of the `/apps/oauth2/lib/Controller/SettingsController.php` Controller (one responsible for handling POST requests to `/apps/oauth2/clients`), confirms that we can use any of the valid accounts to register an OAuth2 client:
 
 ```PHP
 /**
@@ -127,17 +127,14 @@ Opening the `/apps/oauth2/lib/Controller/SettingsController.php` Controller (one
 public function addClient( /* (...) */ ): JSONResponse { /* (...) */ }
 ```
 
-The `@NoAdminRequired` annotation means that to access this endpoint you don't need admin privilages. You still need to be a valid user hovewer, as this endpoint doesn't contain the `@PublicPage` annotation.
+The `@NoAdminRequired` annotation means that to access this endpoint you don't need admin privileges. However, you still need to be a valid user, as this endpoint doesn't contain the `@PublicPage` annotation.
 
 > **Note** </br>
-All the annotations are implemented and explained in `/lib/private/AppFramework/Middleware/Security/SecurityMiddleware.php`
+The annotations are implemented and explained in `/lib/private/AppFramework/Middleware/Security/SecurityMiddleware.php`
 
-All those pieces of information should be enough to execute the attack.
+All this information should be enough to execute the attack.
 
 ### Attack Vector
-
-> **Note** </br>
-Technically speaking, in this case we are dealing with a higher dimensional Attack Vector, since there are **TWO** things that went wrong :).
 
 Authorization codes not being bound to a single Client.
 
@@ -147,10 +144,10 @@ Open registration of new OAuth Clients.
 
 Let's start by making sure we have appropriate cookies inside Postman. In my case, I have decided to use Twardowski's account to carry out the attack.
 
-We will begin by sending the same request to register a new client, only difference being we are logged in as Twardowski this time:
+We will begin by sending the same request to register a new client, the only difference being that we will use Twardowski’s cookies:
 
 <details>
-<summary>View HTTP Request</summary>
+<summary>View HTTP request</summary>
 
 ```HTTP
 POST /apps/oauth2/clients HTTP/1.1
@@ -169,11 +166,11 @@ Content-Length: 89
 }
 ```
 
-We are hit with an error, but we already encounted it before when trying to hack into [Boruta's](../04_Boruta/README.md) account - all we need to do is to add a `RequestToken` header with a valid value. We could simply copy the token from the previous request or we can search the `/core/routes.php` to discover an endpoint, which provides us with valid CSRF tokens:
+We are hit with an error, but we already encountered it before, when trying to break into [Boruta's](../04_Boruta/README.md) account. All we need to do is to add a `RequestToken` header with a valid value. We could simply copy the token from the previous request or we could search the `/core/routes.php` and find an endpoint that provides us with valid CSRF tokens:
 
 ```PHP
 $application->registerRoutes($this, [
-	'routes' => [
+    'routes' => [
         /* (...) */
         ['name' => 'CSRFToken#index', 'url' => '/csrftoken', 'verb' => 'GET'],
         /* (...) */
@@ -187,7 +184,7 @@ $application->registerRoutes($this, [
 With CSRF token included in the request, let's send it one more time:
 
 <details>
-<summary>View HTTP Request</summary>
+<summary>View HTTP request</summary>
 
 ```HTTP
 POST /apps/oauth2/clients HTTP/1.1
@@ -211,19 +208,19 @@ Content-Length: 89
 }
 ```
 
-Just like that, we successfully register an OAuth 2.0 Client! Now we can use it to exchance the leaked authorization code for a token.
+Just like that, we successfully registered an OAuth 2.0 Client! Now we can attempt to exchange the leaked authorization code for a token. This will only work if the server is not checking whether the authorization code is bound to the client that initiated the original flow.
 
 To do this, we first much find an endpoint that's responsible for handing those tokens out. Thankfully, we already discovered it: `/apps/oauth2/api/v1/token`.
 
-Let's create a proper request now. For this, we need this to [provide a few parameters](https://developer.okta.com/blog/2018/04/10/oauth-authorization-code-grant-type#exchange-the-authorization-code-for-an-access-token):
+Let's craft the final request. For this, we need to [provide a few parameters](https://developer.okta.com/blog/2018/04/10/oauth-authorization-code-grant-type#exchange-the-authorization-code-for-an-access-token):
 - `grant_type=authorization_code` to let the server know we want to exchange the code for a token
 - `code` being the leaked authorization code
-- `redirect_uri`, `client_id`, `client_secret` having the same values as our newly added Client
+- `redirect_uri`, `client_id`, `client_secret` having the same values used to register a new Client
 
-With that out of the way, we can finally craft and send the request:
+With that out of the way, we can finally send the request:
 
 <details>
-<summary>View HTTP Request</summary>
+<summary>View HTTP request</summary>
 
 ```HTTP
 POST /apps/oauth2/api/v1/token HTTP/1.1
@@ -254,7 +251,7 @@ Content-Length: 431
 
 Voilà! We successfully exchanged the leaked authorization code for a pair of tokens. We are only interested in the `access_token` though, as we have exactly 1 hour to grab what we need before it expires - that's a lot of time.
 
-To access Popiel's files, we can once again use ModHeader to send a proper `Authorization` header with every request within the web browser:
+To access Popiel's files, we can once again use ModHeader to include a proper `Authorization` header with each request sent by the web browser:
 
 ```HTTP
 Authorization: Bearer q4HyexEnRcUn51shio4kHrS1KCb8NFFNk2efW6BNGYMeIdFXLv9TlkQFBG10eQ2Q4wJ7qDyS
@@ -268,41 +265,31 @@ Finally, after all of this, we gain access to Former King's resources.
 
 ## Prevention
 
-First, when implementing an OAuth 2.0 workflow always ensure that authorization codes are bound to a single Client only. This prevents the code being used for unintended purposes even if it get's accidentally leaked.
+As you integrate OAuth 2.0 flow into your environment, be sure to familiarize yourself with current best practices related to this standard. The [OAuth 2.0 Threat Model and Security Considerations](https://datatracker.ietf.org/doc/html/rfc6819) document is a valuable source of considerations beyond those covered in the original specification.
 
-To up the security even more, authorization codes should be short-lived, one-time-use only and bound to a single Client.
-
-Secondly, OAuth Client creation should only be allowed for trusted users. It is not necessary to restrict this ability to admin only, but there shouldn't be an use case in which every single user can create their own Client.
+In our scenario, the authorization codes should only be bound to a single Client. This would prevent the leaked code from being used by a newly created Client. In addition, if the authorization code were short-lived, it would likely expire before the attackers could figure out a feasible exploitation scenario. Finally, restricting the registration of new OAuth Clients to trusted individuals would further reduce the attack surface. 
 
 ## Tasks
 
-### The NextCloud application plays two OAuth roles at once. Which ones?
-
-`Authorization Server, Resource Server`
-
-Straight from the Briefing, although requires a bit of logical thinking this time.
-
-### What value of the response_type parameter indicates that an application is starting the authorization code flow?
-
-`code`
-
-Straight from the OAuth 2.0 protocol specification, can also easily be found in [various blog posts](https://developer.okta.com/blog/2018/04/10/oauth-authorization-code-grant-type#get-the-users-permission).
-
-### During registration, each client receives a unique pair of client_id and client_secret. (Y/N)
-
-`Y`
-
-`client_id` and `client_secret` uniquely identify a single Client, thus they must be unique as well.
-
 ### What endpoint you should use to exchange the OAuth code for a token?
+
+<details>
+<summary>Answer</summary>
 
 `/apps/oauth2/api/v1/token`
 
-Found in `/apps/oauth2/appinfo/routes.php` file registering routes related to OAuth 2.0.
+</details>
+
+Found in `/apps/oauth2/appinfo/routes.php` file defining the application routes related to OAuth 2.0.
 
 ### What is the content of the Fern_flower_ritual_shard6.txt file in Popiel's account?
 
+<details>
+<summary>Fern_flower_ritual_shard6.txt</summary>
+
 `Midsummer_Corp{Spr1nkle_wat3r_fr0m_a_s@cr3d_spr1ng_0n_th3_fern}`
+
+</details>
 
 Found in the account's files.
 

@@ -37,7 +37,7 @@
 
 ### Reconnaissance
 
-Briefing indicated we will have to somehow exploit the password reset system. Now only that, we won't be able to receive the password reset link (or newly generated password) since the server responsible for that is down.
+Briefing indicated we will have to somehow exploit the password reset system. However, we won't be able to receive the password reset link (or a newly generated password) since the server responsible for that is down.
 
 Moreover, we will have to deal with rate limiting along the way, but we will worry about it when we get to that.
 
@@ -47,7 +47,7 @@ Let's start by trying to reset the password of `babayaga` account. On the login 
 
 However, we get hit by an error, pretty general one in fact. We could suspect it has something to do with aforementioned rate limiting but it's always better to make sure.
 
-When dealing with web stuff it's always a good idea to check the Network tab in Dev Tools to gain insight on how different systems in the application work.
+When dealing with web stuff, it's always a good idea to check the Network tab in Dev Tools to gain insight on how different systems in the application work.
 
 Selecting the request in the Network tab allows us to see the Status Code:
 
@@ -58,8 +58,8 @@ Selecting the request in the Network tab allows us to see the Status Code:
 Aha, so it's rate limiting after all.
 
 There are two ways to figure out how to get around this:
-- **The Boring** - try all the headers from the Briefing and see which one works
-- **The Painful** (you need to read PHP code) - search for the header used to enforce the rate limit within the code
+- **The Boring** - try all the headers from the Briefing and see which one works.
+- **The Painful** (you need to read PHP code) - search for the header used to enforce the rate limit within the code.
 
 First route shows us that spoofing the `X-Forwarded-For` header does the trick. If you're interested how the second route plays out, I have explained it below.
 
@@ -122,15 +122,15 @@ Using the Network tab again, we can select the password reset request to see the
 }
 ```
 
-Just by looking at it we can see that `success_path` refesh to an URI, probably one we should receive in an email that just got sent (given that the server isn't down like in out case).
+Just by looking at it we can see that `success_path` refers to a URI, probably the one we should receive in an email that just got sent (given that the server isn't down like in our case).
 
-We know the username we should use to substitute the `<USER>` part, but what about the `<TOKEN>`? Well, briefing hints that the token might simply not be checked for validity, so let's navigated to the URI substituting random token as `<TOKEN>`.
+We know the username we should use to substitute the `<USER>` part, but what about the `<TOKEN>`? Well, briefing hints that the token might simply not be checked for validity, so let's navigate to the URI substituting random token as `<TOKEN>`.
 
 ```
 /lostpassword/reset/form/123/babayaga
 ```
 
-..and that worked, woah. Seems like the server doesn't care about the token after all. We just found a vulnerability.
+... and that worked, woah. Seems like the server doesn't care about the token after all. We just found a vulnerability.
 
 ### Attack Vector
 
@@ -146,26 +146,33 @@ With password changed, we can enter the new credentials and successfully log int
 
 ## Prevention
 
-When dealing with actions that could alter the user account settings (especially if they can be invoked by 3rd parties) it's critical to ensure that the logic behind the system works as expected.
+When dealing with actions that could alter the user account settings it's critical to ensure that the logic behind the system works as expected.
 
-In this stage the problem boiled down to not checking whether the `<TOKEN>` is valid or not. This enables every user and even anonymous client to reset any of the account's password, at their own discretion.
+In this stage the problem boiled down to not checking whether the `<TOKEN>` is valid or not. This enables every user and even an anonymous client to reset any  account's password, at their own discretion.
 
-Generated password-reset tokens should, for example, be stored in the databased, and have a short lifetime associated with them. After being used, tokens should be simply disposed.
+Generated password-reset tokens should, for example, be stored in the database, and have a short lifetime associated with them. After being used, tokens should be simply disposed.
 
 ## Tasks
 
-### Which HTTP header was used to bypass throttling?
-`X-Forwarded-For`
-
-Found simply by trail and error or by reading through the code responsible for rate limiting.
-
 ### What is the endpoint path for resetting a password?
+
+<details>
+<summary>Answer</summary>
+
 `/lostpassword/reset/form/<TOKEN>/<USER>`
+
+</details>
 
 Found when requesting to reset the password for any given account (after bypassing the rate limiting).
 
 ### What is the content of the Fern_flower_ritual_shard3.txt file in babayaga account?
+
+<details>
+<summary>Fern_flower_ritual_shard3.txt</summary>
+
 `Midsummer_Corp{F1nd_th3_cl34r1ng_w1th_th3_anc13nt_st0n3s}`
+
+</details>
 
 Found in the account's files.
 

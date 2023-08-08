@@ -30,7 +30,7 @@
 **Your objective**: Find a way to log in to the `leshy` account. MFA code brute-force is not required.
 
 ### Reconnaissance
-Based on the Briefing, we need two pieces on information to gain access into Leshy's account - theirs password and MFA code.
+Based on the Briefing, we need two pieces of information to gain access into Leshy's account - their password and MFA code.
 
 While scavenging through the previously discovered hidden file [`inbox.mbox`](../01_Puck/inbox.mbox) on Puck's account we can find Leshy's password with ease:
 
@@ -44,7 +44,7 @@ Dear Puck,
 
 (...)
 
-To make things easier for you, I have attached the login credentials for my groupware account to this email: leshy:nQRbhRyxuDuU9GNd Please keep this information confidential and do not share it with anyone else.
+To make things easier for you, I have attached the login credentials for my groupware account to this email: leshy:n[...]d Please keep this information confidential and do not share it with anyone else.
 
 (...)
 
@@ -54,17 +54,17 @@ Leshy
 
 That was quite unexpected.
 
-Trying to log in into theirs account will hovewer prompt us to enter the MFA code, just as expected.
+Trying to log in into their account will hovewer prompt us to enter the MFA code, just as expected.
 
 ![MFA prompt](./media/MFA_prompt.png)
 
 How can we circumvent that?
 
-While fiddling around with Puck's account I noticed that I'm able to setup MFA to theirs account as well. During the setup process I stumbled across something concerning - the MFA secret, `234567`, didn't seem random at all.
+While fiddling around with Puck's account I noticed that I'm able to setup MFA on their account as well. During the setup process I stumbled across something concerning - the MFA secret, `234567`, didn't seem random at all.
 
 ![MFA secret being '234567'](./media/MFA_secret.png)
 
-I restarted the MFA setup process - secret was still the same. It might be the case the server is still using the previously generated code for this account, which is a red flag already, but just to confirm my suspisions I decided to terminate the current VM and setup a new one - **the secret was still the same**.
+I restarted the MFA setup process - secret was still the same. It might be the case that the server is still using the previously generated code for this account, which is a red flag already, but just to confirm my suspisions, I decided to terminate the current VM and setup a new one - **the secret was still the same**.
 
 ### Attack Vector
 
@@ -80,21 +80,20 @@ And we are in!
 
 ## Prevention
 
-When dealing with MFA you should always make sure that MFA secrets are unique between each user or even better - between each setup attempt. Reasoning is simple - if two users share the same secrets they will have the same MFA codes at the same time.
+When dealing with MFA you should always make sure that MFA secrets are unique between each user or even better - between each setup attempt. Reasoning is simple - if two users share the same secrets, they will have the same MFA codes at the same time.
 
 Also, as a note, never send passwords in emails, this screams 'insecurity' as much as `HTTP`.
 
 ## Tasks
 
-### What is the length of the MFA code used in the application?
-
-`6`
-
-Pretty much the standard length for a general MFA code. Can be confirmed after setting up MFA on Puck's account.
-
 ### What is the content of the file Fern_flower_ritual_shard2.txt in Leshy's account?
 
+<details>
+<summary>Fern_flower_ritual_shard2.txt</summary>
+
 `Midsummer_Corp{Fo11ow_Th3_Wi1l_o'_7h3_W1sps}`
+
+</details>
 
 Found in the account's files.
 

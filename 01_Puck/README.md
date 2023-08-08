@@ -1,5 +1,5 @@
 [[ 🡅 Move up ]](../)</br>
-[[ 🡄 Previous ]](../00_Structure/) **01: Puck** [[ Next 🡆 ]](../02_Leshy/)
+**01: Puck** [[ Next 🡆 ]](../02_Leshy/)
 
 # ☆ Puck, the Intern ☆
 
@@ -28,7 +28,7 @@ After navigating to the web app we are presented with the login page allowing us
 
 ![Login page](./media/login_page.png)
 
-Keen eye might see some text on the bottom - although it can't be highlighted by selection, we can use browser DevTools to easily see it's contents.
+Keen eye might see some text on the bottom - although it can't be highlighted by selection, we can use browser DevTools to easily see its contents.
 
 ![Hidden text](./media/hidden_text.png)
 
@@ -41,7 +41,7 @@ Whether the first one will prove useful in the future is hard to tell, access to
 Back on track - Briefing included information about Puck being careless and burying his login credentials somewhere in the application - checking the source code of the login page should be a good place to start. It's messy, but searching for anything containing the string `password` yields us interesting results:
 
 ```Javascript
-var oc_appconfig = { /* ... */ "defaultPassword":"sfLfSNYavTD4PL4Z" /* ... */ };
+var oc_appconfig = { /* ... */ "defaultPassword":"s[...]Z" /* ... */ };
 ```
 
 ### Attack Vector
@@ -52,7 +52,7 @@ Exposed server-side secret on client-side application
 
 We will use the default user password buried in the client-side web application to access `puck` account.
 
-On the login page we will choose the traditional method, entering `puck` as account name and our newly found default password as password
+On the login page we will choose the traditional method, entering `puck` as account name and our newly found default password as password.
 
 ![Login attempt](./media/login_attempt.png)
 
@@ -60,7 +60,7 @@ Lo and behold, we successfully gained access to Puck's account. Wasn't so hard a
 
 ## Prevention
 
-Never expose server-side secrets on client-side application. Even if it's something as simple as default user password, it's a huge red flag if secrets like this leak into client-side application
+Never expose server-side secrets on client-side application. Even if it's something as simple as a default user password, it's a huge red flag if secrets like this leak into the client-side.
 
 Easiest way to prevent secret leaking is to load them in as Environment Variables, instead of hard-coding them into application. Not only does it provide us with the luxury of all critical pieces of information, such as API keys or defaults, being contained in one place, but also assuming the worst-case scenario, end user might see something like
 
@@ -76,25 +76,18 @@ var adminPassword = "admin123";
 
 which is already a huge plus.
 
+To investigate the secret keeping and get to know more complex (and secure) solutions, check out this article: [Storing secrets in web applications using vaults](https://www.securing.pl/en/storing-secrets-in-web-applications-using-vaults/).
+
 ## Tasks
 
-### What do we call the process of verifying the identity of a user or system?
-`Authentication`
-
-Straight from the Briefing.
-
-### How do we call the process of verifying that a user has access to a particular resource?
-`Authorization`
-
-Straight from the Briefing.
-
-### How long is Puck's password?
-`16`
-
-Once you find the password you can easily check it's length.
-
 ### What is the content of the file Fern_flower_ritual_shard1.txt in Puck's account?
+
+<details>
+<summary>Fern_flower_ritual_shard1.txt</summary>
+
 `Midsummer_Corp{W@it_unt!1_m1dn1ght_0n_th3_Summ3r_Solst1c3}`
+
+</details>
 
 As is the case with every account, once we log into it we are able to navigate through the files stored on that account. There are two notable files present on every account:
 - `Fern_flower_ritual_shard[n].txt` - contains the flag for this stage
@@ -102,17 +95,22 @@ As is the case with every account, once we log into it we are able to navigate t
 
 
 ### Who is going on vacation? Please provide their email address.
+
+<details>
+<summary>Answer</summary>
+
 `leshy@midsummer.corp.local`
+
+</details>
 
 After accessing Puck's account we can notice a text on the bottom of file display saying `2 folders and 25 files (including 1 hidden)`. By navigating into settings, we can show those hidden files.
 
 ![Settings, show hidden files](./media/settings_hidden_files.png)
 
-We can now see the hidden file more specifically a directory, `.mail`. Inside it is a single file titled [`inbox.mbox`](./inbox.mbox). It contains a few emails between Puck and his coworkers and through the power of `CTRL + F` we can easily find the email related to vacations.
+We can now see the hidden file, more specifically: a directory, `.mail`. Inside it is a single file titled [`inbox.mbox`](./inbox.mbox). It contains a few emails between Puck and his coworkers and through the power of `CTRL + F` we can easily find the email related to vacations.
 
 </br>
 </br>
 </br>
 
-[[ 🡅 Move up ]](../)</br>
-[[ 🡄 Previous ]](../00_Structure/) **01: Puck** [[ Next 🡆 ]](../02_Leshy/)
+**01: Puck** [[ Next 🡆 ]](../02_Leshy/)

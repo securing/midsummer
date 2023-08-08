@@ -27,19 +27,19 @@
 
 ### Reconnaissance
 
-Again, the Briefing hints towards how we are going to access Boruta's account this time - using NextCloud alternative account access methods, such as theirs Desktop App.
+Again, the Briefing hints towards how we are going to access Boruta's account this time - using NextCloud alternative account access methods, such as their Desktop App.
 
-Let's start by trying to access Baba Yaga's account (or any other that we can log into really) using alternative login method.
+Let's start by trying to access Baba Yaga's account (or any other that we can log into actually) using the alternative login method.
 
-We start by downloading the [NextCloud client](https://nextcloud.com/clients/) for our device. After launching the app we are shown a screen asking as to log in.
+We start by downloading the [NextCloud client](https://nextcloud.com/clients/) for our device. After launching the app, we are shown a screen asking as to log in.
 
 ![NextCloud login example](./media/nextcloud_example_login.png)
 
-Putting in the server address we want to log into opens a new browser tab where we can authorize the app as a currently logged in user or use an app token to log in another user - this will certainly be worth exploring.
+Putting in the server address we want to log into opens a new browser tab where we can authorize the app as a currently logged in user or use an app token to log in as another user - this will certainly be worth exploring.
 
 ![NextCloud auth popup example](./media/nextcloud_example_popup.png)
 
-Idea of app passwords sounds promising, as we don't need to be logged in as a certain user to authorize as one. Let's figure out how to create one first.
+The idea of app passwords sounds promising, as we don't need to be logged in as a certain user to authorize as one. Let's figure out how to create one first.
 
 Going into `Settings > Security` and scrolling to the bottom allows us to create a new app password.
 
@@ -63,9 +63,9 @@ Looking at the Network tab, we can see the following information about the reque
 
 So there are two important things in the response:
 - `token` is the app password we can use to authenticate with
-- `loginName` is the username to whom the token is bound to
+- `loginName` is the username to which the token is bound to
 
-Briefing also mentioned the Mass Assignment vulnerability, so let's see if we can use it here. For this, we will head into [Postman](https://www.postman.com/) - tool that allows us to handcraft requests and debug them.
+Briefing also mentioned the Mass Assignment vulnerability, so let's see if we can use it here. For this, we will head into [Postman](https://www.postman.com/) - a tool that allows us to handcraft requests and debug them.
 
 Trying to send the "raw" request based on the information from the Network tab yields the following message:
 
@@ -106,7 +106,7 @@ Content-Length: 16
 
 Hmm, seems we tripped a Cross-Site Request Forgery countermeasure, we will need to find a way around that first.
 
-Using the source code provided we can search for occurances of `CSRF check failed` string to find that it's only used in `CrossSiteRequestForgeryException.php`. Following the "chain" we arrive at this code snippet in familiar `SecurityMiddleware.php` file:
+Using the source code provided we can search for occurances of `CSRF check failed` string to find that it's only used in `CrossSiteRequestForgeryException.php`. Following the "chain" we arrive at this code snippet in the familiar `SecurityMiddleware.php` file:
 
 ```PHP
 if (!$this->request->passesCSRFCheck() && !(
@@ -223,7 +223,7 @@ public function create($name, $loginName) {
 }
 ```
 
-There are two checks between us and the finish line. After a while we can clearly see that whereas `boruta` will fail the check, `botura ` (with extra space character) will pass both of them and even better - the final value of `loginName` is whatever we passed in, stripped from white characters from the right, giving us just what we need!
+There are two checks between us and the finish line. After a while we can clearly see that whereas `boruta` will fail the check, `boruta ` (with an extra space character) will pass both of them and even better - the final value of `loginName` is whatever we passed in, stripped from white characters from the right, giving us just what we need!
 
 Let's use this new knowledge to construct another request:
 
@@ -250,7 +250,7 @@ Content-Length: 40
 }
 ```
 
-Being logged in as `babayaga` we just created an app password to access `boruta` account. Looks like we just found the vulnerability we were looking for.
+Being logged in as `babayaga` we just created an app password to access `boruta` account. Looks like we found the vulnerability we were looking for.
 
 ### Attack Vector
 
@@ -258,11 +258,11 @@ Mass Assignment Vulnerability for `/settings/personal/authtokens` endpoint.
 
 ### Execution
 
-First, we create an app password just as shown before. With token (=> app password) in hand, we can start the authorization process by launching the NextCloud client, entering the host address and logging using app password this time. Put in the username, the app password..
+First, we create an app password just as shown before. With the token (app password) in hand, we can start the authorization process by launching the NextCloud client, entering the host address and logging using app password this time. Put in the username, the app password...
 
 ![Using app password creating for boruta](./media/nextcloud_boruta_login.png)
 
-..and we are in!
+... and we are in!
 
 ![Successful login](./media/nextcloud_boruta_success.png)
 
@@ -272,7 +272,7 @@ With that, NextCloud client allows us to specify synchronization options and fin
 
 When dealing with any kind of user input you always need to sanitize it. "Trusting" the user to put in the right data and nothing more created a huge security risk, which can be easily exploited.
 
-When processing object-like user input (like in example above) always assign only specific properties and not the whole object (in our case, the only copied property from input object should be `name`).
+When processing object-like user input (like in the example above) always assign only specific properties and not the whole object (in our case, the only copied property from the input object should be `name`).
 
 There are multiple libraries available to make handling user input a breeze, for example, [Zod](https://zod.dev/), my personal go-to library for projects in Javascript.
 
@@ -280,13 +280,23 @@ There are multiple libraries available to make handling user input a breeze, for
 
 ### What parameter name assigns the app password to the specific user?
 
+<details>
+<summary>Answer</summary>
+
 `loginName`
+
+</details>
 
 Discovered when creating a new app password.
 
 ### What is the content of the Fern_flower_ritual_shard4.txt file in Boruta's account?
 
+<details>
+<summary>Fern_flower_ritual_shard4.txt</summary>
+
 `Midsummer_Corp{L3ave_an_0ff3r1ng_f0r_th3_spir1ts}`
+
+</details>
 
 Found in the account's files.
 
